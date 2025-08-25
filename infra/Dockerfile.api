@@ -1,0 +1,29 @@
+FROM python:3.11-slim
+
+# Needed for pg_isready/psql
+RUN apt-get update && apt-get install -y --no-install-recommends postgresql-client \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install Python deps
+COPY api/requirements.txt /app/api/requirements.txt
+RUN pip install --no-cache-dir -r /app/api/requirements.txt
+
+# Copy code + migrations
+COPY api /app/api
+COPY etl /app/etl
+
+ENV PYTHONUNBUFFERED=1
+
+# Wait for DB, run migration, start API
+CMD bash -lc '\
+  echo "Waiting for postgres ${POSTGRES_HOST}:${POSTGRES_PORT}..."; \
+  until pg_isready -h ${POSTGRES_HOST} -p ${POSTGRES_PORT} -U ${POSTGRES_USER}; do \
+    echo "still waiting..."; sleep 2; \
+  done; \
+  echo "Postgres ready, running migrations..."; \
+  psql "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}" -f etl/migrate.sql || true; \
+  echo "Starting FastAPI..."; \
+  python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 --timeout-keep-alive 120 \
+'

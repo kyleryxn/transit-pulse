@@ -1,0 +1,10 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+COPY web/requirements.txt /app/web/requirements.txt
+RUN pip install --no-cache-dir -r /app/web/requirements.txt
+
+COPY web /app/web
+
+ENV PYTHONUNBUFFERED=1
+CMD ["python", "web/app.py"]
