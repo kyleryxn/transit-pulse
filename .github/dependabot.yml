@@ -1,7 +1,14 @@
 version: 2
 updates:
   - package-ecosystem: "pip"
-    directory: ["backend/api", "frontend/web"]
+    directory: "/backend/api"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: ""
+
+  - package-ecosystem: "pip"
+    directory: "/frontend/web"
     schedule:
       interval: "weekly"
     commit-message:
