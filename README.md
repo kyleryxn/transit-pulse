@@ -96,11 +96,13 @@ curl http://localhost:8000/lines/health
 ## Development
 
 ### Run tests
+
 ```powershell
 pytest tests
 ```
 
 ### Database inspection
+
 ```powershell
 docker compose exec postgres psql -U transit -d transit -c "select * from alerts limit 10;"
 ```
@@ -114,7 +116,6 @@ docker compose exec postgres psql -U transit -d transit -c "select * from alerts
 - [ ] Migrate Dash → React + Mapbox for richer maps
 - [ ] Deploy to the cloud (Render, Fly.io, or AWS)
 
----
-
 ## License
+
 GPL-3.0
