@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from .cache import set_status_snapshot
 from .storage import insert_events
 
-LINES = ["A","C","E","F","G","J","L","M","N","Q","R","W","Z","1","2","3","4","5","6","7"]
+LINES = ["A","C","E","F","G","J","L","M","N","Q","R","W","Z","1","2","3","4","5","6","7","S","SIR"]
 STATUSES = ["GOOD", "DELAYS", "PLANNED"]
 
 def _fake_status():

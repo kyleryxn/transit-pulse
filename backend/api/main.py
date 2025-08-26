@@ -1,6 +1,7 @@
-import os
-from fastapi import FastAPI
 from apscheduler.schedulers.background import BackgroundScheduler
+from fastapi import FastAPI
+
+from .routes import lines as lines_routes
 from .routes import status as status_routes
 from .services.ingest import run_ingest_cycle
 
@@ -11,6 +12,7 @@ def healthz():
     return {"status": "ok"}
 
 app.include_router(status_routes.router, tags=["public"])
+app.include_router(lines_routes.router, tags=["public"])
 
 # Background ingest job
 scheduler = BackgroundScheduler()

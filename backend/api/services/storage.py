@@ -1,6 +1,8 @@
 import os
 from contextlib import contextmanager
+
 import psycopg
+
 
 def _dsn():
     user = os.environ["POSTGRES_USER"]
