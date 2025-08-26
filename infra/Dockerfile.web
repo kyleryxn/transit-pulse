@@ -1,10 +1,13 @@
 FROM python:3.11-slim
 
 WORKDIR /app
-COPY web/requirements.txt /app/web/requirements.txt
-RUN pip install --no-cache-dir -r /app/web/requirements.txt
 
-COPY web /app/web
+# Install UI deps (new path)
+COPY frontend/web/requirements.txt /app/frontend/web/requirements.txt
+RUN pip install --no-cache-dir -r /app/frontend/web/requirements.txt
+
+# Copy code
+COPY frontend /app/frontend
 
 ENV PYTHONUNBUFFERED=1
-CMD ["python", "web/app.py"]
+CMD ["python", "frontend/web/app.py"]
