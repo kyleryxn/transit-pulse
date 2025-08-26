@@ -8,6 +8,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 
 from .routes import lines as lines_routes
 from .routes import status as status_routes
@@ -37,8 +38,13 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="NYC Transit Pulse", version="0.1.1", lifespan=lifespan)
 
 # ---- Templates (server-rendered HTML) ----
-TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
+BASE_DIR = Path(__file__).resolve().parent
+ASSETS_DIR = BASE_DIR / "assets"
+TEMPLATES_DIR = BASE_DIR / "templates"
+
+
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
+app.mount("/static", StaticFiles(directory=str(ASSETS_DIR)), name="static")
 
 
 # ---- Health ----
