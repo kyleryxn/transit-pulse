@@ -34,7 +34,7 @@ async def lifespan(app: FastAPI):
             scheduler.shutdown(wait=False)
 
 
-app = FastAPI(title="NYC Transit Pulse", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="NYC Transit Pulse", version="0.1.1", lifespan=lifespan)
 
 # ---- Templates (server-rendered HTML) ----
 TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
