@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Replaced old `@app.on_event("startup"/"shutdown")` hooks with `lifespan` contenxt to manage APScheduler background 
+- Replaced old `@app.on_event("startup"/"shutdown")` hooks with `lifespan` context to manage APScheduler background 
 job lifecycle
 - Migrations now include an additional `alerts.sql` file automatically during startup
 - `main.py` structure updated: routers + templates + lifespan integrated for cleaner separation of API routes and HTML 
