@@ -1,6 +1,6 @@
 APScheduler==3.11.0
 uvicorn[standard]==0.37.0
-fastapi==0.118.0
+fastapi==0.119.0
 psycopg==3.2.10
 pydantic==2.11.10
 redis==6.4.0
