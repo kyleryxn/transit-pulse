@@ -1,4 +1,4 @@
-APScheduler==3.11.0
+APScheduler==3.11.1
 uvicorn[standard]==0.38.0
 fastapi==0.119.1
 psycopg==3.2.12
