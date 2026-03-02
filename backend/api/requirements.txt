@@ -3,6 +3,6 @@ uvicorn[standard]==0.41.0
 fastapi==0.132.0
 psycopg==3.3.3
 pydantic==2.12.5
-redis==7.2.0
+redis==7.2.1
 gtfs-realtime-bindings==2.0.0
 jinja2==3.1.6
