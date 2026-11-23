@@ -1,7 +1,7 @@
 APScheduler==3.11.3
 uvicorn[standard]==0.54.0
 fastapi==0.165.0
-psycopg==3.3.8
+psycopg==3.3.9
 pydantic==2.14.4
 redis==8.1.0
 gtfs-realtime-bindings==3.0.0
